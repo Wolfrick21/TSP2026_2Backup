@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "499646423873",
+    "firebase_url": "https://p3-tsp-20262-e45a4-default-rtdb.firebaseio.com",
+    "project_id": "p3-tsp-20262-e45a4",
+    "storage_bucket": "p3-tsp-20262-e45a4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499646423873:android:eaa3ef461b4aa3a66e37c0",
+        "android_client_info": {
+          "package_name": "com.TilinesCompany.VR20262"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW2MJifIJWOyJSrWbxLKDM2fm4uzMk_Gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
