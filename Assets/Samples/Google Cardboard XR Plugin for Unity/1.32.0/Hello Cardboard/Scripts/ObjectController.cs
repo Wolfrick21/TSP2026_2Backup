@@ -38,7 +38,7 @@ public class ObjectController : MonoBehaviour
     // set so that the objects are always within the room (which is about 5 meters
     // across).
     private const float _minObjectDistance = 2.5f;
-    private const float _maxObjectDistance = 3.5f;
+    private const float _maxObjectDistance = 100f;
     private const float _minObjectHeight = 0.5f;
     private const float _maxObjectHeight = 3.5f;
 
