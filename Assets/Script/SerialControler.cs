@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ public class SerialControler : MonoBehaviour
 
     void Start()
     {
-        serialPort = new SerialPort("COM11",9600);
+        serialPort = new SerialPort("COM3",9600);
         serialPort.ReadTimeout = 50;
 
         try
@@ -59,4 +59,4 @@ public class SerialControler : MonoBehaviour
         Debug.Log("Sale de colision con" + other.name);
         serialPort.Write("0");
     }
-}
+}*/
