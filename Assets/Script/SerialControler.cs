@@ -1,4 +1,5 @@
-/*using UnityEngine;
+/*
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -59,9 +60,5 @@ public class SerialControler : MonoBehaviour
         Debug.Log("Sale de colision con" + other.name);
         serialPort.Write("0");
     }
-<<<<<<< HEAD
+
 }*/
-=======
-}
-*/
->>>>>>> e8b21de3aed2599d6ad1a53574cd368905eb6e68
