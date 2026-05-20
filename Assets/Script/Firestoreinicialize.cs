@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Threading.Tasks;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using UnityEngine.Networking;
@@ -91,6 +92,62 @@ public class Firestoreinicialize : MonoBehaviour
         else
         {
             Debug.LogError("Carta no encontrada");
+        }
+    }
+
+    public void txtAR()
+    {
+        SceneManager.LoadScene("AR");
+    }
+
+    public void FetchCardDataFromFirestore(string cardName, TMP_Text textMesh)
+    {
+        FetchCardData(cardName,textMesh);
+
+    }
+
+    private async void FetchCardData(string cardName, TMP_Text textMesh)
+    {
+        textMesh.text = "Buscando datos...";
+
+        List<string> collections = new List<string> {"Mounstruo", "Magia", "Trampa", "Otros"};
+        List<Task<DocumentSnapshot>> tasks = new List<Task<DocumentSnapshot>>();
+
+        //Iniciar todas las consultas
+        foreach (string collection in collections)
+        {
+            DocumentReference docRef = firestore.Collection("Cartas")
+                .Document(collection).Collection(cardName).Document("Datos");
+            tasks.Add(docRef.GetSnapshotAsync());
+        }
+
+        try
+        {
+            //Esperar a que todas las consultas terminen
+            DocumentSnapshot[] snapshots = await Task.WhenAll(tasks);
+
+            //Buscar la primera que tenga datos
+            foreach (var snapshot in snapshots)
+            {
+                if(snapshot.Exists)
+                {
+                    Dictionary<string, object> cardData = snapshot.ToDictionary();
+                    textMesh.text = $"Nombre {cardName} \n" +
+                                    $"ATK {cardData["ATK"]} \n" +
+                                    $"DEF {cardData["DEF"]} \n" +
+                                    $"Descripcion {cardData["Desc"]} \n" +
+                                    $"Nivel {cardData["Level"]}";
+                    return;
+                }
+            }
+
+            Debug.Log("Carta no encontrada");
+            textMesh.text = "Carta no encontrada";
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error al buscar la carta" + ex.Message);
+            textMesh.text = "Error al buscar la carta" + ex.Message;
         }
     }
 
